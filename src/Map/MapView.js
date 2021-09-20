@@ -29,7 +29,7 @@ const MapView = () => {
   }, [])
 
   return (
-    <LoadScript googleMapsApiKey="AIzaSyDOKoPOVH659fLqlsF7kU3sCQhkSgkB5FM">
+    <LoadScript googleMapsApiKey="YOUR API KEY">
       <GoogleMap mapContainerStyle={containerStyle} center={coords} zoom={13}>
         {/* Child components, such as markers, info windows, etc. */}
         {coords && <Marker position={coords}></Marker>}
