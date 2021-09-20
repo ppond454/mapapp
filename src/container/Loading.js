@@ -1,11 +1,10 @@
-import * as React from 'react';
-import {CircularProgress ,Box } from '@mui/material/';
-
+import * as React from "react"
+import { LinearProgress, Box } from "@mui/material/"
 
 export default function Loading() {
   return (
-    <Box sx={{ display: 'flex' }}>
-      <CircularProgress />
+    <Box sx={{ width: '100%' }}>
+      <LinearProgress color="success" />
     </Box>
-  );
+  )
 }

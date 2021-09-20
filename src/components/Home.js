@@ -1,16 +1,11 @@
 
-import Map from "./Map"
-// import { useContext } from "react"
-// import { contextUser } from "../App"
+import MapView from "../Map/MapView"
 
 const Home = () => {
 
-    //const {user} = useContext(contextUser)
-
-
     return (
         <div className="home">
-            <Map/>
+            <MapView/>
         </div>
     )
 }

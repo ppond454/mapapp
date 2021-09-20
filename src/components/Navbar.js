@@ -5,12 +5,13 @@ import Toolbar from "@material-ui/core/Toolbar"
 import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
 import IconButton from "@material-ui/core/IconButton"
-import MenuIcon from "@material-ui/icons/Menu"
 import Avatar from "@material-ui/core/Avatar"
 import ExitToAppIcon from "@material-ui/icons/ExitToApp"
+import Box from '@mui/material/Box';
 import { auth } from "../config/firebase"
 import { contextSession } from "../App"
 import {useHistory} from "react-router-dom"
+import { CircularProgress } from "@mui/material"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -52,18 +53,21 @@ export default function Navbar() {
             color="inherit"
             aria-label="menu"
           >
-            {session.currentUser ? <Avatar alt="picture" src={session.currentUser.photoURL} /> : <MenuIcon />}
+            {session.isLoggedIn ? <Avatar alt="picture" src={session.currentUser.photoURL} /> : <Box sx={{ width: '100%' }}>
+              {sessionStorage.getItem("session") &&<CircularProgress style ={{color:"inherit"}} /> }
+    </Box>}
           </IconButton>
-          <Typography variant="h7" className={classes.title}>
+          <Typography  className={classes.title}>
             {session.currentUser ? session.currentUser.displayName :null}
           </Typography>
 
-          {session.currentUser ? <Button color="inherit" onClick={() => handleLogout()}>
+          {session.isLoggedIn ? <Button color="inherit" onClick={() => handleLogout()}>
             <ExitToAppIcon /> Logout
           </Button>  : <Button color="inherit" onClick={() => {history.push("./signup")}}>
-            <ExitToAppIcon /> SignUp
+             {sessionStorage.getItem("session") ? null: "Signup" }
           </Button>}
         </Toolbar>
+        
       </AppBar>
     </div>
   )

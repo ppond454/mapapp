@@ -11,7 +11,7 @@ import {
 } from "react-router-dom"
 import Signup from "./components/Signup"
 import Loading from "./container/Loading"
-
+// import { getLocation } from "./Locations/getLocation"
 
 const contextSession = createContext()
 
@@ -20,13 +20,11 @@ function App() {
     isLoggedIn: false,
     currentUser: null,
     errorMassage: null,
-    
+
   })
 
-
-
   useEffect(() => {
-       
+    // getLocation()
     auth.onAuthStateChanged((data) => {
       if (data) {
         setSession({
@@ -34,32 +32,38 @@ function App() {
           currentUser: data,
           errorMassage: null,
         })
-        sessionStorage.setItem("session",1) 
+
+        sessionStorage.setItem("session", 1)
       }
     })
   }, [])
 
   return (
     <Router>
-    <contextSession.Provider value={{ session, setSession }}>
+      <contextSession.Provider value={{ session, setSession }}>
         <div className="App">
           <Navbar />
-          {session.isLoggedIn  ? (
+          {session.isLoggedIn ? (
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/signup" component={Signup} />
-              <Redirect to = "/"/> 
+              <Redirect to="/" />
             </Switch>
           ) : (
             <Switch>
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/login" component={Login} />
-              {!sessionStorage.getItem("session") ? <Redirect to = "/login"/> : <Loading/> } 
+              {!sessionStorage.getItem("session") ? (
+                <Redirect to="/login" />
+              ) : (
+                <Loading />
+              )}
             </Switch>
           )}
 
-      </div>
-    </contextSession.Provider>
+          {/* {session.isLoggedIn && <Bottom/> } */}
+        </div>
+      </contextSession.Provider>
     </Router>
   )
 }

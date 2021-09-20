@@ -57,6 +57,7 @@ const Login = () => {
       handleClickOpen()
       await signInWithGoogle().then(()=>{
         sessionStorage.setItem("session",1)
+        
       })
     } catch {
       handleClose()
