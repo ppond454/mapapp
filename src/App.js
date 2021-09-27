@@ -1,7 +1,6 @@
 import { useEffect, useState, createContext } from "react"
 import Login from "./components/Login"
 import Home from "./components/Home"
-import Navbar from "./components/Navbar"
 import { auth } from "./config/firebase"
 import {
   BrowserRouter as Router,
@@ -11,6 +10,7 @@ import {
 } from "react-router-dom"
 import Signup from "./components/Signup"
 import Loading from "./container/Loading"
+
 // import { getLocation } from "./Locations/getLocation"
 
 const contextSession = createContext()
@@ -20,7 +20,6 @@ function App() {
     isLoggedIn: false,
     currentUser: null,
     errorMassage: null,
-
   })
 
   useEffect(() => {
@@ -39,10 +38,9 @@ function App() {
   }, [])
 
   return (
-    <Router>
-      <contextSession.Provider value={{ session, setSession }}>
+    <contextSession.Provider value={{ session, setSession }}>
+      <Router>
         <div className="App">
-          <Navbar />
           {session.isLoggedIn ? (
             <Switch>
               <Route exact path="/" component={Home} />
@@ -63,8 +61,8 @@ function App() {
 
           {/* {session.isLoggedIn && <Bottom/> } */}
         </div>
-      </contextSession.Provider>
-    </Router>
+      </Router>
+    </contextSession.Provider>
   )
 }
 

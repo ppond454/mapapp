@@ -7,8 +7,9 @@
     "@emotion/styled": "^11.3.0",
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
+    "@mui/icons-material": "^5.0.1",
     "@mui/material": "^5.0.0",
-    "@react-google-maps/api": "^2.2.0",
+    "@react-google-maps/api": "^2.4.0",
     "@react-leaflet/core": "^1.0.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -23,6 +24,7 @@
     "react-scripts": "4.0.3",
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0",
+    "swr": "^1.0.1",
     "web-vitals": "^1.1.2",
     "yarn": "^1.22.11"
   },
@@ -49,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-devtools": "^4.18.0"
   }
 }

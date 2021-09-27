@@ -1,5 +1,5 @@
 import { signInWithGoogle } from "../config/firebase"
-import { useState , useContext} from "react"
+import { useState , useContext } from "react"
 import {
   Grid,
   Paper,
@@ -7,15 +7,15 @@ import {
   TextField,
   Button,
   Typography,
-  Link,
-  Dialog,   
+  Link,  
 } from "@material-ui/core"
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 import Checkbox from "@material-ui/core/Checkbox"
-import GoogleButton from "react-google-button"
+import {GoogleButton} from "react-google-button"
 import { contextSession } from "../App"
-
 
 
 const Login = () => {
@@ -29,11 +29,7 @@ const Login = () => {
     width: 300,
     margin: "20px auto",
   }
-  const googleBt= {
-    margin: "auto",
-    padding: 30 ,
-    
-  }
+
   // const [isLoading, setLoad] = useState(false)
   const [open, setOpen] = useState(false);
 
@@ -51,7 +47,8 @@ const Login = () => {
   const avatarStyle = { backgroundColor: "#1bbd7e" }
   const btnstyle = { margin: "12px 0" }
 
-  const handleSignin = async () => {
+  const handleSignin = async (e) => {
+    e.preventDefault()
     try {
      // setLoad(true)
       handleClickOpen()
@@ -98,15 +95,20 @@ const Login = () => {
                         Sign Up 
                 </Link>
                 </Typography>
-                <Typography style ={googleBt}>
-                <GoogleButton onClick={()=>{handleSignin()}} />
+             
+                <GoogleButton onClick={handleSignin} style ={{margin:"2rem auto"}} />
+
                 
-                </Typography>
+           
             </Paper>
         </Grid>
-        <Dialog open={open} onClose={handleClose} style={{backgroundColor: "transparent"}}>
-  
-        </Dialog>
+        <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+        onClick={handleClose}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   )
 }
