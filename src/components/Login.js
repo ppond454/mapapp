@@ -61,7 +61,7 @@ const Login = () => {
       setSession({
         isLoggedIn : false,
       })
-      window.location.reload()
+      // window.location.reload()
     }
   }
 

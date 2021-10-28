@@ -1,10 +1,13 @@
 import MapView from "../Map/MapView"
+// import MapBox from "../Map/MapBox"
 import { createContext, useState } from "react"
 import useSWR from 'swr'
 import axios from "axios"
+
 import Navbar from "./Navbar"
 
 export const  coordsContext  = createContext()
+
 
 const Home = () => {
   const [coords, setCoords] = useState({
@@ -20,7 +23,10 @@ const Home = () => {
     state: false,
   })
 
+
+
   const {data} = useSWR("data", ()=> axios.get("https://covid19.ddc.moph.go.th/api/Cases/today-cases-by-provinces") )
+  
   
   let _data
   
@@ -28,12 +34,13 @@ const Home = () => {
     _data = data.data.sort((a,b)=> b.total_case_excludeabroad -a.total_case_excludeabroad )
   }
 
-console.log("home rerender");
+// console.log("home rerender");
   return (
     <coordsContext.Provider value={{ coords, setCoords , _data ,select, setSelect}}>
       <div>
       <Navbar />
         <MapView />
+        {/* <MapBox/> */}
       </div>
     </coordsContext.Provider>
   )
